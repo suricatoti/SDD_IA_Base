@@ -102,3 +102,39 @@ Move your existing code into the app_build/ folder.
 Open the chat and type: /startcycle @pm, read the existing code in app_build/ and generate the Technical Specs and UI JSONs based on what is already built. Then let the rest of the team run audits and write the missing tests.
 
 The agents will reverse-engineer your code, document it, fix vulnerabilities, and generate the test suite automatically!
+
+## 🔄 The Evolution Loop (How Changes Cascade)
+
+One of the most powerful features of this framework is its **Spec-Driven propagation**. When you change a technical decision or product rule during a `/brainstorm` session, you never need to manually refactor or track down what needs to be updated. The architecture handles it end-to-end.
+
+The pipeline follows a strict, single source of truth cascade:
+
+```text
+ [/brainstorm] ➔ Updates `project_standards.md` / `Technical_Specification.md`
+                       │
+                       ▼
+ [/startcycle] ➔ [1. @pm / @designer] Re-specifies JSON screens & visual tokens
+                       │
+                       ▼
+                 [2. @architect] Updates `System_Architecture.md` & folders
+                       │
+                       ▼
+                 [3. @engineer] Refactors frontend/backend code & updates DTOs
+                       │
+                       ▼
+                 [4. @qa / @secdevops] Rewrites unit tests & audits new tech hooks
+                       │
+                       ▼
+                 [5. @pentester] Adapts security attack scripts to new vectors
+                       │
+                       ▼
+                 [6. @architect] Automatically rewrites the live Wiki in `docs/`
+
+### How to apply a change safely:
+Trigger /brainstorm to debate the new framework, database, or feature with @architect.
+
+Give your formal approval ("I'm OK with this"), allowing the agent to save the new rules to the standards file.
+
+Instantly type /startcycle.
+
+The factory wakes up, reads the fresh delta from the specifications, and updates the code, test suites, security gates, and documentation simultaneously without code drift.
