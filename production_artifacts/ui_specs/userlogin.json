@@ -1,0 +1,45 @@
+{
+  "screen_name": "UserLogin",
+  "route": "/login",
+  "description": "Tela de autenticação principal do sistema.",
+  
+  "ui_components": [
+    { 
+      "type": "TextInput", 
+      "label": "E-mail", 
+      "binds_to": "email",
+      "validations": [
+        { "rule": "isEmpty", "message": "O campo e-mail é obrigatório." },
+        { "rule": "isInvalidFormat", "message": "Por favor, digite um e-mail válido (ex: nome@dominio.com)." }
+      ]
+    },
+    { 
+      "type": "PasswordInput", 
+      "label": "Senha", 
+      "binds_to": "password",
+      "validations": [
+        { "rule": "isEmpty", "message": "A senha não pode ficar em branco." },
+        { "rule": "minLength:6", "message": "A senha deve ter pelo menos 6 caracteres." }
+      ]
+    }
+  ],
+
+  "api_integrations": [
+    {
+      "trigger": "submitLogin",
+      "endpoint": "POST /api/auth",
+      "payload": ["email", "password"],
+      "on_success": "Redirecionar para /dashboard",
+      "api_error_mapping": [
+        { "status_code": 404, "condition": "UserNotFound", "message": "Este usuário não existe em nossa base de dados." },
+        { "status_code": 401, "condition": "InvalidCredentials", "message": "Senha incorreta. Tente novamente." },
+        { "status_code": 500, "condition": "ServerError", "message": "Sistema indisponível no momento. Tente mais tarde." }
+      ]
+    }
+  ],
+
+  "global_business_rules": [
+    "Desabilitar o botão 'Entrar' enquanto os campos não passarem nas validações locais.",
+    "Bloquear o formulário por 5 minutos após 3 tentativas de login falhas consecutivas."
+  ]
+}

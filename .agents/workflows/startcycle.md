@@ -32,11 +32,8 @@ description: Autonomous Software Factory Cycle
         - **THEN** **@engineer** executes `skills/refactor_code.md` specifically to patch the PoC exploit.
         - **GOTO** Step 4 (Re-verify the entire pipeline from the start to ensure the patch didn't break functionality).
 
-## Phase 5: Knowledge Consolidation & Version Control
+## Phase 5: Knowledge Consolidation & Runtime Initialization
 7. **@architect** executes `skills/generate_documentation.md`.
     - *Action*: Compiles/updates the living technical wiki inside the `docs/` directory.
-8. **@engineer** executes system commands for Version Control:
-    - Runs `git init` (if the repository is not yet initialized).
-    - Runs `git add .` to stage the application code, reports, and documentation.
-    - Runs `git commit -m "feat(auto): successful cycle completion - <brief summary of features added>"`
-9. **System** outputs a final success message in the chat: "✅ **Cycle Complete!** The application is secure, tested, documented, and safely committed to version control."
+8. **@engineer** executes the necessary terminal commands inside the `app_build/` directory to install any missing dependencies and START or RESTART the application's local development server (e.g., `npm install` followed by `npm run dev` or `npm start`).
+9. **System** outputs a final success message in the chat: "✅ **Cycle Complete!** The application is secure, tested, documented, and the local server is running. You can now test it visually. Awaiting your manual Git review and commit."
