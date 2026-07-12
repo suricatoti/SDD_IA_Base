@@ -8,6 +8,11 @@ This document contains the immutable technical rules for this project. ALL agent
 - **Database**: Strictly use **PostgreSQL** as the relational database engine.
 - **ORM / Query Builder**: Use **Prisma ORM** (or Sequelize) to manage database migrations and queries, ensuring strict data typing and UUID generation at the database level.
 
+## API Standards
+- **RESTful Architecture**: All endpoints must strictly adhere to RESTful principles. Use standard HTTP methods correctly: `GET` for retrieving data, `POST` for creation, `PUT`/`PATCH` for updates, and `DELETE` for removal.
+- **Data Exchange Format**: JSON (`application/json`) is the absolute and only format allowed for both incoming request payloads and outgoing response structures.
+- **Standardized Responses**: All API responses must follow a predictable, wrapped structure. Success responses must return the data object, and error responses must include a clear, non-leaking message string accompanied by the appropriate semantic HTTP status code (e.g., `200`, `201`, `400`, `401`, `403`, `404`).
+
 ## Security & Authentication
 - **Tokens**: Strictly use signed JWT (JSON Web Tokens) for authentication.
 - **Expiration**: All JWTs must have a strict, short-lived expiration time.
@@ -24,3 +29,8 @@ This document contains the immutable technical rules for this project. ALL agent
 
 ## Communication
 - **No Guessing**: If a business rule or feature is not explicitly defined here or by the user, the agent MUST pause and ask. Do not assume or hallucinate features.
+
+## Error Logging & Data Masking (Privacy & Compliance)
+- **Centralized Logging**: The backend system must implement a centralized logging mechanism (e.g., Winston, Pino, or standard middleware) to record application errors and operational logs.
+- **Strict Data PII/Sensitive Masking**: Under NO circumstances should Sensitive Personal Data (PII) or financial records—such as credit card numbers, passwords, CVVs, physical addresses, or national identification numbers—be written to log files or terminal outputs.
+- **Log Sanitation**: Implement an automated interceptor or sanitizer in the logging middleware to automatically strip out or replace sensitive keys (e.g., `password`, `cardNumber`, `cvv`, `token`) with a `[MASKED]` placeholder before saving the log.
