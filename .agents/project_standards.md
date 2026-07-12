@@ -2,10 +2,21 @@
 
 This document contains the immutable technical rules for this project. ALL agents (@pm, @architect, @engineer, @secdevops, @qa, @pentester) MUST obey these rules unconditionally. Do NOT ask the user about these, just implement them.
 
+## Technology Stack (Core Architecture)
+- **Frontend Framework**: Strictly use **React.js** (built with Vite, utilizing JavaScript/TypeScript as approved in the cycle).
+- **Backend Framework**: Strictly use **Node.js** with **Express.js** for building the REST API.
+- **Database**: Strictly use **PostgreSQL** as the relational database engine.
+- **ORM / Query Builder**: Use **Prisma ORM** (or Sequelize) to manage database migrations and queries, ensuring strict data typing and UUID generation at the database level.
+
 ## Security & Authentication
 - **Tokens**: Strictly use signed JWT (JSON Web Tokens) for authentication.
 - **Expiration**: All JWTs must have a strict, short-lived expiration time.
 - **Passwords**: Must be hashed using modern algorithms (e.g., bcrypt, Argon2) before hitting the database.
+
+## Authorization & Resource Ownership (IDOR Prevention)
+- **Strict Data Ownership**: A user MUST only access, modify, or delete resources that belong explicitly to them.
+- **Context Validation**: Before fulfilling any API request, the system backend must intercept the call, extract the user's identity from the secure JWT, and perform a strict database/policy verification to confirm that the requested Resource ID is owned by or linked to that specific User ID. 
+- **Fail-Closed Architecture**: If a user attempts to access a resource ID belonging to someone else, the API must fail-closed instantly, log the unauthorized attempt, and return a standardized HTTP `403 Forbidden` status code (never leak data or generate broad `500 Server Error` crashes).
 
 ## Database & Data Modeling
 - **Primary Keys**: NEVER use sequential or numeric IDs (e.g., `id: 1, 2, 3`). Strictly use **UUIDv4** for all database primary keys to prevent enumeration attacks (IDOR/BOLA).
