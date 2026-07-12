@@ -7,7 +7,9 @@ description: Autonomous Software Factory Cycle
 ## Phase 1: Design & Architecture
 1. **@pm** executes `skills/write_specs.md` based on the user's prompt.
     - 🛑 **[HUMAN-IN-THE-LOOP]**: Execution PAUSES here for user to approve the MVP scope and requirements.
-2. **@architect** executes `skills/design_architecture.md`.
+2. **@designer** executes `skills/generate_assets.md`.
+    - *Action*: Injects color palettes, style tokens, and generates/maps the site's images and visual assets.
+3. **@architect** executes `skills/design_architecture.md`.
     - 🛑 **[HUMAN-IN-THE-LOOP]**: Execution PAUSES here for user to approve the Tech Stack and Design Pattern.
 
 ## Phase 2: Implementation
