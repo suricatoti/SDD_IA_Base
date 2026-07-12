@@ -13,6 +13,11 @@ This document contains the immutable technical rules for this project. ALL agent
 - **Data Exchange Format**: JSON (`application/json`) is the absolute and only format allowed for both incoming request payloads and outgoing response structures.
 - **Standardized Responses**: All API responses must follow a predictable, wrapped structure. Success responses must return the data object, and error responses must include a clear, non-leaking message string accompanied by the appropriate semantic HTTP status code (e.g., `200`, `201`, `400`, `401`, `403`, `404`).
 
+## Input Validation & Mass Assignment Prevention (Overposting Protection)
+- **Strict Payload Whitelisting**: The backend MUST NEVER accept or save raw request payloads (e.g., `req.body`) directly into the database. 
+- **Data Transfer Objects (DTOs)**: Every API endpoint that receives data (`POST`, `PUT`, `PATCH`) must use strict input schemas or Data Transfer Objects (DTOs) to validate and filter parameters. Only fields explicitly expected for that specific action can be processed.
+- **Immutable System Fields**: Critical fields such as account balances (`balance`), user roles (`role`, `is_admin`), identifiers (`id`, `uuid`), and timestamps (`created_at`) MUST be completely stripped from user-supplied payloads during validation. They can only be modified via specialized, highly secure internal ledger or administrative endpoints.
+
 ## Security & Authentication
 - **Tokens**: Strictly use signed JWT (JSON Web Tokens) for authentication.
 - **Expiration**: All JWTs must have a strict, short-lived expiration time.
