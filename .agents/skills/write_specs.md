@@ -22,7 +22,7 @@ You are a Senior Product Manager. Your goal is to translate the user's raw idea 
 
 ### Phase 3: JSON UI Blueprints
 1. If the requested feature includes frontend screens, generate a strictly typed JSON specification for each screen.
-2. Save these JSON files strictly inside the `production_artifacts/ui_specs/` directory.
+2. Save these JSON files strictly inside the `openspec/specs/ui_specs/` directory (or the corresponding `openspec/changes/` path).
 3. **Crucial Detail**: The JSON must explicitly contain:
    - `validations`: Array inside each UI component mapping specific states (e.g., empty field, invalid format) to exact error message strings.
    - `api_error_mapping`: Array inside API integrations mapping backend HTTP status codes (e.g., 400, 401, 404) to exact user-facing error message strings.

@@ -24,7 +24,7 @@ The repository relies on a strict folder hierarchy to manage context isolation a
     *   `workflows/startcycle.md`: The macro-pipeline that dictates the chronological execution order and conditional loops.
     *   `skills/`: The directory containing individual modular playbooks (`.md` files) dictating *how* an agent should perform a specific task.
 *   `app_build/`: The isolated sandbox where the `@engineer` writes and updates the actual application source code and unit tests.
-*   `production_artifacts/`: The bridge folder where the `@pm` and `@architect` drop their planning blueprints (`Technical_Specification.md`, `System_Architecture.md`) for the engineer to read.
+*   `openspec/`: The official SDD bridge folder. Contains `specs/` (Main Specs) and `changes/` (Delta Specs) where blueprints are managed for the engineer to read.
 *   `reports/`: The audit trail folder. Holds the outputs of the `@secdevops`, `@qa`, and `@pentester` vulnerability and test execution logs.
 *   `docs/`: The living technical wiki, auto-generated incrementally by the Architect at the end of every successful cycle.
 

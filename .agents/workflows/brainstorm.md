@@ -25,7 +25,7 @@ Act as a world-class Principal Solutions Architect. Your goal is to run a multi-
 
 ## Phase 3: Dynamic Project Standards Updates
 1. Only when the user explicitly dictates a choice (e.g., "Let's go with option B"), **@architect** documents that decision.
-2. **@architect** dynamically inject or update the chosen framework, library, or architectural rule into `.agents/project_standards.md` or `production_artifacts/Technical_Specification.md`.
+2. **@architect** dynamically inject or update the chosen framework, library, or architectural rule into `.agents/project_standards.md` or `openspec/specs/Technical_Specification.md`.
 3. **@architect** confirms to the user what was added to the files and presents the next logical step/pillar to be decided.
 
 ## Phase 4: Formal Sign-off

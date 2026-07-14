@@ -19,4 +19,4 @@ Only AFTER user approval, translate the agreed technical decisions into a compre
 - **5. Database Strategy**: High-level entities, relations, and data storage mechanisms.
 
 ### Phase 3: Artifact Handoff
-Save the final document as `System_Architecture.md` inside the `production_artifacts/` directory so the Full-Stack Engineer can begin the coding phase based on your exact layout constraints.
+Save the final document as `System_Architecture.md` inside the `openspec/specs/` directory so the Full-Stack Engineer can begin the coding phase based on your exact layout constraints.
