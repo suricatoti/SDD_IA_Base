@@ -25,9 +25,11 @@
 - **Target File**: `docs/testing_strategy.md`
 - **Content**: Documentation of frontend and backend testing frameworks, setup and configurations for tests, list of unit and integration test suites created by the `@engineer`, mock data strategies, and instructions on how to run test suites locally.
 
-### 🛡️ 5. Penetration Testing & Vulnerability History
-- **Target File**: `docs/security_assessment.md`
-- **Content**: Summary of the offensive security findings reported by the `@pentester`. It must detail the attack vectors simulated, vulnerabilities discovered during runtime, mitigation strategies implemented, and a historical log of fixed vs. accepted security risks.
+### 🛡️ 5: OpenSpec Archive & Consolidation
+1. Once the `@qa` and `@secdevops` have passed the code with ZERO DEFECTS, you must consolidate the OpenSpec files.
+2. Read the active Delta Spec from `openspec/changes/<feature_name>/spec.md`.
+3. Intelligently merge the `ADDED`, `MODIFIED`, and `REMOVED` rules from the Delta Spec into the main source of truth files located in `openspec/specs/`.
+4. After merging, move the entire `<feature_name>` folder from `openspec/changes/` to `openspec/archive/` to maintain the historical audit trail.
 
 ### 🏗️ 6. System Components & Folder Structure
 - **Target File**: `docs/system_architecture.md`
